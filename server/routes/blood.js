@@ -37,7 +37,7 @@ router.post('/request', auth, async (req, res) => {
       bloodGroup,
       unitsRequired,
       hospital: hospitalId,
-      requestedBy: req.user.id,
+      requestedBy: req.userId,
       location: hospital.location,
       urgency: urgency || 'normal',
       requiredBy: requiredBy ? new Date(requiredBy) : undefined,
@@ -178,7 +178,7 @@ router.post('/register-donor', auth, async (req, res) => {
     }
 
     const user = await User.findByIdAndUpdate(
-      req.user.id,
+      req.userId,
       {
         isBloodDonor: true,
         bloodGroup,
@@ -219,7 +219,7 @@ router.put('/requests/:id/fulfill', auth, async (req, res) => {
     }
 
     // Check if user is the requester or hospital admin
-    const isRequester = bloodRequest.requestedBy.toString() === req.user.id;
+    const isRequester = bloodRequest.requestedBy.toString() === req.userId;
     if (!isRequester && req.user.role !== 'admin') {
       return res.status(403).json({
         success: false,

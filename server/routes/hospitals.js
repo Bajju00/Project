@@ -138,7 +138,7 @@ router.put('/:id/status', auth, async (req, res) => {
     }
 
     // Check if user is hospital admin
-    if (hospital.admin.toString() !== req.user.id && req.user.role !== 'admin') {
+    if (hospital.admin.toString() !== req.userId && req.user.role !== 'admin') {
       return res.status(403).json({
         success: false,
         error: 'Not authorized to update this hospital'

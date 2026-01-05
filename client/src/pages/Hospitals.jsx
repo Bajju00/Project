@@ -48,10 +48,15 @@ const Hospitals = () => {
 
     // Search filter
     if (searchTerm) {
-      filtered = filtered.filter(hospital =>
-        hospital.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        hospital.address.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(hospital => {
+        const nameMatch = (hospital.name || '').toString().toLowerCase().includes(term);
+        const addr = typeof hospital.address === 'string'
+          ? hospital.address
+          : (hospital.address?.fullAddress || hospital.address?.address || '');
+        const addrMatch = addr.toString().toLowerCase().includes(term);
+        return nameMatch || addrMatch;
+      });
     }
 
     // Bed filter
@@ -192,8 +197,11 @@ const Hospitals = () => {
                     >
                       <Popup>
                         <strong>{hospital.name}</strong><br />
-                        {hospital.address}<br />
-                        📞 {hospital.contact?.phone || 'N/A'}<br />
+                        {typeof hospital.address === 'string'
+                          ? hospital.address
+                          : (hospital.address?.fullAddress || hospital.address?.address || (hospital.address ? JSON.stringify(hospital.address) : 'N/A'))
+                        }<br />
+                        📞 {hospital.contact?.phone || (hospital.contact ? JSON.stringify(hospital.contact) : 'N/A')}<br />
                         🛏️ Beds: {hospital.facilities?.availableBeds || 'N/A'}<br />
                         🏥 ICU: {hospital.facilities?.availableIcuBeds || 'N/A'}
                       </Popup>
@@ -214,7 +222,12 @@ const Hospitals = () => {
                   filteredHospitals.map((hospital, index) => (
                     <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
                       <h3 className="text-xl font-bold text-gray-800 mb-2">{hospital.name}</h3>
-                      <p className="text-gray-600 text-sm mb-3">{hospital.address}</p>
+                      <p className="text-gray-600 text-sm mb-3">
+                        {typeof hospital.address === 'string'
+                          ? hospital.address
+                          : (hospital.address?.fullAddress || hospital.address?.address || (hospital.address ? JSON.stringify(hospital.address) : 'N/A'))
+                        }
+                      </p>
                       
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">

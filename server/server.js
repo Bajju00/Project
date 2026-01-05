@@ -321,30 +321,46 @@ app.get("/api/hospitals", async (req, res) => {
         // Mock data for testing if DB not connected
         if (mongoose.connection.readyState !== 1) {
             const mockHospitals = [
-                {
-                    id: 1,
-                    name: "City General Hospital",
-                    address: "123 Medical Street, New Delhi",
-                    availableBeds: 15,
-                    availableICU: 5,
-                    distance: "2.3 km"
-                },
-                {
-                    id: 2,
-                    name: "Medicare Center",
-                    address: "456 Health Avenue, Mumbai",
-                    availableBeds: 8,
-                    availableICU: 2,
-                    distance: "3.1 km"
-                },
-                {
-                    id: 3,
-                    name: "Sunrise Medical",
-                    address: "789 Health Road, Bangalore",
-                    availableBeds: 12,
-                    availableICU: 3,
-                    distance: "4.5 km"
+              {
+                _id: '1',
+                name: "City General Hospital",
+                address: "123 Medical Street, New Delhi",
+                facilities: {
+                  availableBeds: 25,
+                  availableIcuBeds: 8,
+                  availableOxygenCylinders: 18
                 }
+              },
+              {
+                _id: '2',
+                name: "Medicare Center",
+                address: "456 Health Avenue, Mumbai",
+                facilities: {
+                  availableBeds: 15,
+                  availableIcuBeds: 5,
+                  availableOxygenCylinders: 12
+                }
+              },
+              {
+                _id: '3',
+                name: "Sunrise Medical",
+                address: "789 Care Road, Bangalore",
+                facilities: {
+                  availableBeds: 32,
+                  availableIcuBeds: 10,
+                  availableOxygenCylinders: 22
+                }
+              },
+              {
+                _id: '4',
+                name: "Apollo Hospital",
+                address: "999 Premier Healthcare Complex, Delhi",
+                facilities: {
+                  availableBeds: 40,
+                  availableIcuBeds: 12,
+                  availableOxygenCylinders: 30
+                }
+              }
             ];
             
             return res.json({
@@ -356,13 +372,27 @@ app.get("/api/hospitals", async (req, res) => {
         }
         
         const hospitals = await Hospital.find({ status: "active" })
-            .select("name address location availableBeds availableICU status")
-            .limit(20);
-            
+          .select("name address location facilities specialties status")
+          .limit(20);
+
+        // Transform to match expected frontend format
+        const transformedHospitals = hospitals.map(h => ({
+          _id: h._id,
+          name: h.name,
+          address: h.address?.fullAddress || h.address,
+          facilities: {
+            availableBeds: h.facilities?.availableBeds ?? 0,
+            availableIcuBeds: h.facilities?.availableIcuBeds ?? 0,
+            availableOxygenCylinders: h.facilities?.availableOxygenCylinders ?? 0
+          },
+          specialties: h.specialties,
+          status: h.status
+        }));
+
         res.json({
-            success: true,
-            count: hospitals.length,
-            hospitals
+          success: true,
+          count: transformedHospitals.length,
+          hospitals: transformedHospitals
         });
     } catch (error) {
         console.error("Get hospitals error:", error);
@@ -997,13 +1027,134 @@ app.post("/api/test/init", async (req, res) => {
     const allUsers = [...testUsers, ...hospitalUsers, adminUser];
     const createdUsers = await User.insertMany(allUsers);
     
+    // Create hospitals with real data
+    const adminUserCreated = createdUsers.find(u => u.email === "admin@lifelink.com");
+    const cityGeneralUser = createdUsers.find(u => u.email === "citygeneral@lifelink.com");
+    const medicareUser = createdUsers.find(u => u.email === "medicare@lifelink.com");
+    const sunriseUser = createdUsers.find(u => u.email === "sunrise@lifelink.com");
+    
+    // Clear existing hospitals
+    await Hospital.deleteMany({ name: { $in: ["City General Hospital", "Medicare Center", "Sunrise Medical", "Apollo Hospital"] } });
+    
+    // Create new hospitals
+    const hospitals = [
+      {
+        name: "City General Hospital",
+        registrationId: "HOS001",
+        address: {
+          fullAddress: "123 Medical Street, New Delhi"
+        },
+        location: {
+          type: "Point",
+          coordinates: [77.2099, 28.6139]
+        },
+        contact: {
+          phone: "+91 9876543213"
+        },
+        facilities: {
+          totalBeds: 100,
+          availableBeds: 25,
+          icuBeds: 20,
+          availableIcuBeds: 8,
+          oxygenCylinders: 50,
+          availableOxygenCylinders: 18
+        },
+        specialties: ["Emergency", "ICU", "General Medicine"],
+        status: "active",
+        admin: adminUserCreated?._id // Admin owns this hospital
+      },
+      {
+        name: "Medicare Center",
+        registrationId: "HOS002",
+        address: {
+          fullAddress: "456 Health Avenue, Mumbai"
+        },
+        location: {
+          type: "Point",
+          coordinates: [72.8479, 19.0760]
+        },
+        contact: {
+          phone: "+91 9876543214"
+        },
+        facilities: {
+          totalBeds: 80,
+          availableBeds: 15,
+          icuBeds: 15,
+          availableIcuBeds: 5,
+          oxygenCylinders: 40,
+          availableOxygenCylinders: 12
+        },
+        specialties: ["Cardiology", "ICU", "General Medicine"],
+        status: "active",
+        admin: medicareUser?._id
+      },
+      {
+        name: "Sunrise Medical",
+        registrationId: "HOS003",
+        address: {
+          fullAddress: "789 Care Road, Bangalore"
+        },
+        location: {
+          type: "Point",
+          coordinates: [77.5946, 12.9716]
+        },
+        contact: {
+          phone: "+91 9876543215"
+        },
+        facilities: {
+          totalBeds: 120,
+          availableBeds: 32,
+          icuBeds: 25,
+          availableIcuBeds: 10,
+          oxygenCylinders: 60,
+          availableOxygenCylinders: 22
+        },
+        specialties: ["Emergency", "Neurology", "ICU", "General Medicine"],
+        status: "active",
+        admin: sunriseUser?._id
+      },
+      {
+        name: "Apollo Hospital",
+        registrationId: "HOS004",
+        address: {
+          fullAddress: "999 Premier Healthcare Complex, Delhi"
+        },
+        location: {
+          type: "Point",
+          coordinates: [77.1025, 28.5355]
+        },
+        contact: {
+          phone: "+91 9876543216"
+        },
+        facilities: {
+          totalBeds: 150,
+          availableBeds: 40,
+          icuBeds: 30,
+          availableIcuBeds: 12,
+          oxygenCylinders: 80,
+          availableOxygenCylinders: 30
+        },
+        specialties: ["Emergency", "Cardiology", "Neurology", "Orthopedics", "ICU", "General Medicine"],
+        status: "active",
+        admin: adminUserCreated?._id
+      }
+    ];
+    
+    await Hospital.insertMany(hospitals);
+    
     res.json({
       success: true,
-      message: "Test users created successfully",
+      message: "Test users and hospitals created successfully",
       users: createdUsers.map(u => ({
         email: u.email,
         role: u.role,
         password: "Check source code for passwords"
+      })),
+      hospitals: hospitals.map(h => ({
+        name: h.name,
+        availableBeds: h.facilities.availableBeds,
+        availableICU: h.facilities.availableIcuBeds,
+        availableOxygen: h.facilities.availableOxygenCylinders
       }))
     });
     

@@ -211,7 +211,7 @@ const Home = () => {
           </p>
           
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Link 
+            {/* <Link 
               to="/login" 
               className="bg-white text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
             >
@@ -222,7 +222,7 @@ const Home = () => {
               className="bg-green-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-lg text-lg"
             >
               🏥 Hospital Login
-            </Link>
+            </Link> */}
             <button 
               onClick={handleEmergencySOS}
               className="bg-red-800 text-white px-8 py-3 rounded-lg font-bold hover:bg-red-900 transition shadow-lg text-lg animate-pulse"
@@ -280,29 +280,35 @@ const Home = () => {
                     
                     <p className="text-gray-600 mb-4 flex items-start">
                       <span className="mr-2">📍</span>
-                      {hospital.address}
+                      {typeof hospital.address === 'string'
+                        ? hospital.address
+                        : (hospital.address?.fullAddress || hospital.address?.address || (hospital.address ? JSON.stringify(hospital.address) : 'N/A'))
+                      }
                     </p>
                     
                     <div className="grid grid-cols-3 gap-2 mb-6">
-                      <div className="bg-blue-50 p-3 rounded-lg text-center">
-                        <div className="text-lg font-bold text-blue-700">
-                          {hospital.facilities?.availableBeds || 0}
-                        </div>
-                        <div className="text-xs text-gray-600">Beds</div>
-                      </div>
-                      <div className="bg-green-50 p-3 rounded-lg text-center">
-                        <div className="text-lg font-bold text-green-700">
-                          {hospital.facilities?.availableIcuBeds || 0}
-                        </div>
-                        <div className="text-xs text-gray-600">ICU</div>
-                      </div>
-                      <div className="bg-orange-50 p-3 rounded-lg text-center">
-                        <div className="text-lg font-bold text-orange-700">
-                          {hospital.facilities?.availableOxygenCylinders || 0}
-                        </div>
-                        <div className="text-xs text-gray-600">O₂</div>
-                      </div>
-                    </div>
+  <div className="bg-blue-50 p-3 rounded-lg text-center">
+    <div className="text-lg font-bold text-blue-700">
+      {hospital.facilities?.availableBeds ?? 0}
+    </div>
+    <div className="text-xs text-gray-600">Beds</div>
+  </div>
+
+  <div className="bg-green-50 p-3 rounded-lg text-center">
+    <div className="text-lg font-bold text-green-700">
+      {hospital.facilities?.availableIcuBeds ?? 0}
+    </div>
+    <div className="text-xs text-gray-600">ICU</div>
+  </div>
+
+  <div className="bg-orange-50 p-3 rounded-lg text-center">
+    <div className="text-lg font-bold text-orange-700">
+      {hospital.facilities?.availableOxygenCylinders ?? 0}
+    </div>
+    <div className="text-xs text-gray-600">O₂</div>
+  </div>
+</div>
+
                     
                     <div className="flex gap-2">
                       <Link 
@@ -374,23 +380,18 @@ const Home = () => {
       <section className="py-16 bg-gradient-to-r from-blue-600 to-green-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready for Emergencies?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Register now to access all emergency healthcare services instantly
-          </p>
           
+           <p className="mt-8 text-sm opacity-80">
+            • 24/7 Emergency Support • Verified Hospitals • Real-time Updates • Secure & Private
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              to="/register" 
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition text-lg"
-            >
-              👤 Register as User
-            </Link>
-            <Link 
+          
+            {/* <Link 
               to="/admin/login" 
               className="bg-green-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition text-lg"
             >
               🏥 Hospital Login
-            </Link>
+            </Link> */}
             <button 
               onClick={handleEmergencySOS}
               className="bg-red-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition text-lg animate-pulse"
@@ -399,31 +400,24 @@ const Home = () => {
             </button>
           </div>
           
-          <p className="mt-8 text-sm opacity-80">
-            • 24/7 Emergency Support • Verified Hospitals • Real-time Updates • Secure & Private
-          </p>
+          
         </div>
 
-        // In your Home.jsx hero section, add:
+        
 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-  <Link 
+  {/* <Link 
     to="/login" 
     className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors"
   >
     👤 User Login
-  </Link>
-  <Link 
+  </Link> */}
+  {/* <Link 
     to="/admin/login" 
     className="bg-green-500 text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition-colors"
   >
     🏥 Admin/Hospital Login
-  </Link>
-  <Link 
-    to="/hospital/register" 
-    className="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition-colors"
-  >
-    🏥 Register Hospital
-  </Link>
+  </Link> */}
+  
 </div>
       </section>
     </div>

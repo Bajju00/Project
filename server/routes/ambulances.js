@@ -75,7 +75,7 @@ router.post('/request', auth, async (req, res) => {
     }
 
     // Check if user owns the emergency
-    if (emergency.user.toString() !== req.user.id) {
+    if (emergency.user.toString() !== req.userId) {
       return res.status(403).json({
         success: false,
         error: 'Not authorized to request ambulance for this emergency'

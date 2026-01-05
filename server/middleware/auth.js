@@ -27,8 +27,8 @@ const auth = async (req, res, next) => {
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
-        // Add user to request - FIXED: use 'id' not 'userId'
-        req.userId = decoded.userid;
+        // Add user to request - FIXED: use 'id' not 'userid'
+        req.userId = decoded.id;
         next();
     } catch (error) {
         console.error('Auth middleware error:', error.message);
@@ -39,4 +39,6 @@ const auth = async (req, res, next) => {
     }
 };
 
+// Export both as default and named export for flexibility
 module.exports = auth;
+module.exports.auth = auth;

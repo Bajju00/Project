@@ -273,12 +273,52 @@ const AdminDashboard = () => {
     navigate('/admin/login');
   };
 
-  const handleUpdateResources = () => {
-    // Update resources logic here
-    setResources(tempResources);
-    setIsEditingResources(false);
-    toast.success('Hospital resources updated successfully!');
-  };
+ const handleUpdateResources = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(
+      `http://localhost:5000/api/hospitals/update-resources/${hospitalInfo.hospitalId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          totalBeds: tempResources.totalBeds,
+          availableBeds: tempResources.availableBeds,
+          totalIcuBeds: tempResources.totalIcuBeds,
+          availableIcuBeds: tempResources.availableIcuBeds,
+          totalOxygenCylinders: tempResources.totalOxygenCylinders,
+          availableOxygenCylinders: tempResources.availableOxygenCylinders
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResources({
+        totalBeds: data.hospital.facilities.totalBeds,
+        availableBeds: data.hospital.facilities.availableBeds,
+        totalIcuBeds: data.hospital.facilities.icuBeds,
+        availableIcuBeds: data.hospital.facilities.availableIcuBeds,
+        totalOxygenCylinders: data.hospital.facilities.oxygenCylinders,
+        availableOxygenCylinders: data.hospital.facilities.availableOxygenCylinders
+      });
+
+      setIsEditingResources(false);
+      toast.success("Resources updated successfully");
+    } else {
+      toast.error("Update failed");
+    }
+
+  } catch (error) {
+    toast.error("Server error");
+  }
+};
+
 
   const handleMarkEmergencyResolved = (emergencyId) => {
     setEmergencies(prev => 

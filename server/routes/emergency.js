@@ -22,7 +22,7 @@ router.post('/sos', auth, async (req, res) => {
 
     // Create emergency
     const emergency = new Emergency({
-      user: req.user.id,
+      user: req.userId,
       location: {
         type: 'Point',
         coordinates: location
@@ -73,7 +73,7 @@ router.post('/sos', auth, async (req, res) => {
     .limit(3);
 
     // Get user info
-    const user = await User.findById(req.user.id).select('fullName mobile bloodGroup');
+    const user = await User.findById(req.userId).select('fullName mobile bloodGroup');
 
     res.status(201).json({
       success: true,
@@ -120,7 +120,7 @@ router.get('/:id', auth, async (req, res) => {
     }
 
     // Check if user owns this emergency or is admin
-    if (emergency.user._id.toString() !== req.user.id && req.user.role !== 'admin') {
+    if (emergency.user._id.toString() !== req.userId && req.user.role !== 'admin') {
       return res.status(403).json({
         success: false,
         error: 'Not authorized to view this emergency'
@@ -144,7 +144,7 @@ router.get('/:id', auth, async (req, res) => {
 // @access  Private
 router.get('/my', auth, async (req, res) => {
   try {
-    const emergencies = await Emergency.find({ user: req.user.id })
+    const emergencies = await Emergency.find({ user: req.userId })
       .sort({ createdAt: -1 })
       .populate('acceptedByHospital', 'name')
       .populate('assignedAmbulance', 'ambulanceNumber')
@@ -178,7 +178,7 @@ router.put('/:id/cancel', auth, async (req, res) => {
     }
 
     // Check if user owns this emergency
-    if (emergency.user.toString() !== req.user.id) {
+    if (emergency.user.toString() !== req.userId) {
       return res.status(403).json({
         success: false,
         error: 'Not authorized to cancel this emergency'
@@ -231,7 +231,7 @@ router.put('/:id/assign-hospital', auth, async (req, res) => {
     }
 
     // Check if user is hospital admin
-    if (hospital.admin.toString() !== req.user.id) {
+    if (hospital.admin.toString() !== req.userId) {
       return res.status(403).json({
         success: false,
         error: 'Not authorized to assign hospital'

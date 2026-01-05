@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import authService from '../services/authService';
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
@@ -16,25 +17,17 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      // Call your backend login API
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      // Use authService for login
+      const result = await authService.login(formData.email, formData.password);
+      console.log('Login result:', result);
 
-      const data = await response.json();
-      console.log('Login response:', data);
-
-      if (data.success && data.token) {
+      if (result.success && result.token) {
         // Store auth data
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user', JSON.stringify(result.user));
         
         // Check if user is admin or hospital
-        const user = data.user;
+        const user = result.user;
         const isAuthorized = user.role === 'admin' || user.role === 'hospital' || user.userType === 'hospital';
         
         if (isAuthorized) {
@@ -49,7 +42,7 @@ const AdminLogin = () => {
           navigate('/login');
         }
       } else {
-        toast.error(data.error || 'Login failed');
+        toast.error(result.error || 'Login failed');
       }
     } catch (error) {
       console.error('Login error:', error);
@@ -62,7 +55,7 @@ const AdminLogin = () => {
   // Quick login for testing
   const handleQuickLogin = (email, password, type) => {
     setFormData({ email, password });
-    toast.info(`Logging in as ${type}...`);
+    toast.loading(`Logging in as ${type}...`);
     
     setTimeout(() => {
       const form = document.querySelector('form');

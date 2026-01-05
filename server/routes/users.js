@@ -17,7 +17,7 @@ const { auth } = require('../middleware/auth');
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.userId).select('-password');
     res.json({
       success: true,
       user
@@ -46,7 +46,7 @@ router.put('/me', auth, async (req, res) => {
     });
 
     const user = await User.findByIdAndUpdate(
-      req.user.id,
+      req.userId,
       updates,
       { new: true, runValidators: true }
     ).select('-password');
@@ -126,7 +126,7 @@ router.post('/emergency-contacts', auth, async (req, res) => {
       });
     }
 
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.userId);
     user.emergencyContacts.push({ name, phone, relationship });
     await user.save();
 
@@ -148,7 +148,7 @@ router.post('/emergency-contacts', auth, async (req, res) => {
 // @access  Private
 router.delete('/emergency-contacts/:contactId', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.userId);
     user.emergencyContacts = user.emergencyContacts.filter(
       contact => contact._id.toString() !== req.params.contactId
     );
