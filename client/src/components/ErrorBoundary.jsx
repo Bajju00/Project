@@ -7,7 +7,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -46,7 +46,7 @@ class ErrorBoundary extends Component {
                   Refresh Page
                 </button>
                 
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.DEV && (
                   <details className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <summary className="cursor-pointer text-gray-700 font-medium">Error Details</summary>
                     <pre className="mt-2 text-xs text-gray-600 overflow-auto">

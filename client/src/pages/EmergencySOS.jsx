@@ -16,16 +16,14 @@ const EmergencySOS = () => {
     setSending(true);
     
     navigator.geolocation.getCurrentPosition(
-      async (position) => {
+      async (_position) => {
         try {
-          const sosData = {
-            location: [position.coords.longitude, position.coords.latitude],
-            emergencyType,
-            description
-          };
-
           // TODO: Connect to backend API
-          // const response = await api.post('/emergency/sos', sosData);
+          // await api.post('/emergency/sos', {
+          //   location: [position.coords.longitude, position.coords.latitude],
+          //   emergencyType,
+          //   description
+          // });
           
           toast.success('Emergency SOS sent successfully!');
           setDescription('');
@@ -40,7 +38,7 @@ const EmergencySOS = () => {
           setSending(false);
         }
       },
-      (error) => {
+      () => {
         toast.error('Please enable location services');
         setSending(false);
       }

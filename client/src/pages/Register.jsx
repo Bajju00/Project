@@ -23,23 +23,6 @@ const Register = () => {
     });
   };
 
-  // Function to generate unique test data for development
-  const fillTestData = () => {
-    const timestamp = Date.now();
-    const randomNum = Math.floor(Math.random() * 10000);
-    
-    setFormData({
-      fullName: `Test User ${timestamp}`,
-      email: `test${timestamp}@example.com`,
-      mobile: `98765${randomNum.toString().padStart(4, '0')}`,
-      password: 'test123',
-      confirmPassword: 'test123',
-      bloodGroup: 'O+'
-    });
-    
-    toast.success('Test data filled! Use these unique credentials.');
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     

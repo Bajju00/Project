@@ -1,5 +1,5 @@
 ﻿// src/pages/Ambulance.jsx - Complete Version
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const Ambulance = () => {

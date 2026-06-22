@@ -98,13 +98,13 @@ function App() {
               } />
               
               {/* Hospital/Admin Routes */}
-              <Route path="/admin/dashboard" element={
+              {/* <Route path="/admin/dashboard" element={
                 <AdminRoute>
                   <AdminDashboard />
                 </AdminRoute>
-              } />
-              <Route path="/hospital/register" element={<HospitalRegister />} />
-<Route path="/admin/login" element={<AdminLogin />} />
+              } /> */}
+              {/* <Route path="/hospital/register" element={<HospitalRegister />} /> */}
+              {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
               
               {/* Catch all route */}
               <Route path="*" element={<Navigate to="/" replace />} />

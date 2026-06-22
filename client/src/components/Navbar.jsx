@@ -1,7 +1,8 @@
 // src/components/Navbar.jsx - CORRECTED VERSION
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,NavLink } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import logo from '../assets/M1.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -47,31 +48,41 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg">
+    <nav className="bg-white text-white shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-white p-2 rounded-lg">
-              <span className="text-2xl">🚑</span>
+            <div className="w-10 h-10 object-contain ">
+              <img src={logo} alt="Logo" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">LifeLink</h1>
-              <p className="text-xs text-blue-100">Emergency Healthcare</p>
+              <h1 className="text-xl font-bold text-blue-700">LifeLink</h1>
+              <p className="text-xs text-gray-700">Emergency Healthcare</p>
             </div>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="hover:text-blue-200 transition-colors font-medium">
-              Home
-            </Link>
+            <NavLink
+    to="/"
+    end
+    className={({ isActive }) =>
+      `font-medium transition-colors ${
+        isActive
+          ? "text-blue-600 border-b-2 border-blue-600 pb-1"
+          : "text-black hover:text-blue-700"
+      }`
+    }
+  >
+    Home
+  </NavLink>
             
             {isAuthenticated() ? (
               <>
                 <Link 
                   to={isHospital || isAdmin ? "/admin/dashboard" : "/dashboard"} 
-                  className="hover:text-blue-200 transition-colors font-medium"
+                  className="hover:text-blue-700 transition-colors font-medium text-black"
                 >
                   Dashboard
                 </Link>
@@ -79,13 +90,13 @@ const Navbar = () => {
                 {/* Show additional links for regular users */}
                 {!(isHospital || isAdmin) && (
                   <>
-                    <Link to="/hospitals" className="hover:text-blue-200 transition-colors font-medium">
+                    <Link to="/hospitals" className="hover:text-blue-700 transition-colors font-medium">
                       Hospitals
                     </Link>
-                    <Link to="/ambulance" className="hover:text-blue-200 transition-colors font-medium">
+                    <Link to="/ambulance" className="hover:text-blue-700 transition-colors font-medium">
                       Ambulance
                     </Link>
-                    <Link to="/blood-donors" className="hover:text-blue-200 transition-colors font-medium">
+                    <Link to="/blood-donors" className="hover:text-blue-700 transition-colors font-medium">
                       Blood Donors
                     </Link>
                   </>
@@ -107,15 +118,15 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-blue-200 transition-colors font-medium">
+                <Link to="/login" className="hover:text-blue-700 transition-colors font-medium  text-black">
                   User Login
                 </Link>
-                <Link to="/admin/login" className="hover:text-blue-200 transition-colors font-medium">
+                <Link to="/admin/login" className="hover:text-blue-700 transition-colors font-medium  text-black">
                   Admin/Hospital Login
                 </Link>
                 <Link 
                   to="/hospital/register" 
-                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors font-bold"
+                  className="bg-green-500 hover:bg-green-600  text-black px-4 py-2 rounded-lg transition-colors font-bold"
                 >
                   Register Hospital
                 </Link>
@@ -131,7 +142,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-2xl"
+            className="md:hidden text-2xl text-black"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? '✕' : '☰'}
@@ -140,11 +151,11 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-blue-500">
+          <div className="md:hidden py-4 border-t border-blue-700  text-black">
             <div className="flex flex-col space-y-4">
               <Link 
                 to="/" 
-                className="py-2 hover:text-blue-200 transition-colors"
+                className="py-2 hover:text-blue-700 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
@@ -154,7 +165,7 @@ const Navbar = () => {
                 <>
                   <Link 
                     to={isHospital || isAdmin ? "/admin/dashboard" : "/dashboard"} 
-                    className="py-2 hover:text-blue-200 transition-colors"
+                    className="py-2 hover:text-blue-700 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Dashboard
@@ -165,21 +176,21 @@ const Navbar = () => {
                     <>
                       <Link 
                         to="/hospitals" 
-                        className="py-2 hover:text-blue-200 transition-colors"
+                        className="py-2 hover:text-blue-700 transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Hospitals
                       </Link>
                       <Link 
                         to="/ambulance" 
-                        className="py-2 hover:text-blue-200 transition-colors"
+                        className="py-2 hover:text-blue-700 transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Ambulance
                       </Link>
                       <Link 
                         to="/blood-donors" 
-                        className="py-2 hover:text-blue-200 transition-colors"
+                        className="py-2 hover:text-blue-700 transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Blood Donors
@@ -187,7 +198,7 @@ const Navbar = () => {
                     </>
                   )}
                   
-                  <div className="pt-4 border-t border-blue-500 space-y-3">
+                  <div className="pt-4 border-t border-blue-700 space-y-3">
                     <div className="text-sm">
                       <p className="font-medium">
                         {user?.fullName || user?.name || user?.hospitalName || 'User'}
@@ -214,14 +225,14 @@ const Navbar = () => {
                 <>
                   <Link 
                     to="/login" 
-                    className="py-2 hover:text-blue-200 transition-colors"
+                    className="py-2 hover:text-blue-700 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     User Login
                   </Link>
                   <Link 
                     to="/admin/login" 
-                    className="py-2 hover:text-blue-200 transition-colors"
+                    className="py-2 hover:text-blue-700 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Admin/Hospital Login

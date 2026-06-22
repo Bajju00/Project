@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
 const BloodDonors = () => {
-  const [donors, setDonors] = useState([
+  const [donors] = useState([
     { id: 1, name: 'Priya Sharma', bloodGroup: 'B+', distance: '2.3 km', lastDonated: '3 months ago', contact: '9876543212', available: true },
     { id: 2, name: 'Rahul Verma', bloodGroup: 'O+', distance: '3.1 km', lastDonated: '1 month ago', contact: '9876543213', available: true },
     { id: 3, name: 'Anjali Singh', bloodGroup: 'A+', distance: '4.5 km', lastDonated: '6 months ago', contact: '9876543214', available: false },

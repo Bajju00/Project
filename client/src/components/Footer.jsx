@@ -1,71 +1,118 @@
 import React from 'react';
+import img from '../assets/M1.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer  className="bg-gradient-to-r from-blue-950 to-blue-900 text-white rounded-t-[20px]">
+      <div className="container mx-auto px-6 py-4">
+
+    <div className="grid md:grid-cols-5 gap-10">
+
+      {/* Brand */}
+      <div>
+        <div className="flex items-center gap-3 mb-4">
+          <img
+            src={img}
+            alt="LifeLink"
+            className="w-12 h-12"
+          />
+
           <div>
-            <h3 className="text-xl font-bold mb-4">LifeLink</h3>
-            <p className="text-gray-400">
-              Real-time emergency healthcare locator system for faster medical assistance.
+            <h3 className="text-2xl font-bold">
+              LifeLink
+            </h3>
+            <p className="text-sm text-blue-200">
+              Emergency Healthcare
             </p>
           </div>
-          
-          <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="/" className="text-gray-400 hover:text-white transition-colors">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/hospitals" className="text-gray-400 hover:text-white transition-colors">
-                  Find Hospitals
-                </a>
-              </li>
-              <li>
-                <a href="/ambulance" className="text-gray-400 hover:text-white transition-colors">
-                  Book Ambulance
-                </a>
-              </li>
-              <li>
-                <a href="/blood-donors" className="text-gray-400 hover:text-white transition-colors">
-                  Blood Donors
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-bold mb-4">Emergency Contacts</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Ambulance: 108</li>
-              <li>Police: 100</li>
-              <li>Fire: 101</li>
-              <li>Women Helpline: 1091</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-bold mb-4">Contact Us</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Email: support@lifelink.com</li>
-              <li>Phone: +91 1800-123-4567</li>
-              <li>Address: 123 Health Street, Medical City</li>
-            </ul>
-          </div>
         </div>
-        
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {currentYear} LifeLink Emergency Healthcare Locator. All rights reserved.</p>
-          <p className="mt-2 text-sm">Built with ❤️ for emergency healthcare management</p>
+
+        <p className="text-blue-200">
+          Connecting lives to care in real-time.
+          Because every second matters.
+        </p>
+      </div>
+
+      {/* Quick Links */}
+      <div>
+        <h4 className="font-semibold mb-4">
+          Quick Links
+        </h4>
+
+        <ul className="space-y-2 text-blue-200">
+          <li>Home</li>
+          <li>Hospitals</li>
+          <li>Ambulances</li>
+          <li>Blood Donors</li>
+          <li>About Us</li>
+        </ul>
+      </div>
+
+      {/* Emergency */}
+      <div>
+        <h4 className="font-semibold mb-4">
+          Emergency Contacts
+        </h4>
+
+        <div className="space-y-3">
+          <p className="text-xl font-bold">📞 108</p>
+          <p className="text-blue-200">
+            Emergency Helpline
+          </p>
+
+          <p className="text-xl font-bold">
+            📞 1800 123 4567
+          </p>
+          <p className="text-blue-200">
+            Support Helpline
+          </p>
         </div>
       </div>
-    </footer>
+
+      {/* Company */}
+      <div>
+        <h4 className="font-semibold mb-4">
+          Company
+        </h4>
+
+        <ul className="space-y-2 text-blue-200">
+          <li>About Us</li>
+          <li>Careers</li>
+          <li>Privacy Policy</li>
+          <li>Terms & Conditions</li>
+        </ul>
+      </div>
+
+      {/* Newsletter */}
+      <div>
+        <h4 className="font-semibold mb-4">
+          Newsletter
+        </h4>
+
+        <p className="text-blue-200 mb-3">
+          Subscribe for updates & health tips.
+        </p>
+
+        <input
+          type="email"
+          placeholder="Enter your email"
+          className="w-full p-3 rounded-lg text-black outline-none"
+        />
+
+        <button className="mt-3 bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-medium transition">
+          Subscribe
+        </button>
+      </div>
+
+    </div>
+
+    <div className="border-t border-blue-800 mt-10 pt-6 text-center text-blue-300">
+      © {currentYear} LifeLink Emergency Healthcare. All Rights Reserved.
+    </div>
+  </div>
+  </footer>
   );
 };
 
