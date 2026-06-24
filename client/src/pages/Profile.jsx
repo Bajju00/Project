@@ -1,9 +1,9 @@
 // src/pages/Profile.jsx
 import React from 'react';
-import authService from '../services/authService';
+import { getCurrentUser } from '../data/demoData';
 
 const Profile = () => {
-  const user = authService.getCurrentUser();
+  const user = getCurrentUser();
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">

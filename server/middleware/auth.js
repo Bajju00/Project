@@ -1,44 +1,41 @@
-﻿// middleware/auth.js
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import Hospital from '../models/Hospital.js';
 
-const auth = async (req, res, next) => {
+const protect = async (req, res, next) => {
+  let token;
+
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
-        // Get token from header
-        const authHeader = req.header('Authorization');
-        if (!authHeader) {
-            return res.status(401).json({
-                success: false,
-                error: 'No token, authorization denied'
-            });
-        }
-        
-        // Extract token
-        const token = authHeader.startsWith('Bearer ') 
-            ? authHeader.substring(7) 
-            : authHeader;
-        
-        if (!token) {
-            return res.status(401).json({
-                success: false,
-                error: 'No token, authorization denied'
-            });
-        }
+      // Get token from header
+      token = req.headers.authorization.split(' ')[1];
 
-        // Verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        
-        // Add user to request - FIXED: use 'id' not 'userid'
-        req.userId = decoded.id;
-        next();
+      // Verify token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'lifelink_super_secret_key_2026');
+
+      // First check User
+      let account = await User.findById(decoded.id).select('-password');
+      
+      // If not found, check Hospital
+      if (!account) {
+        account = await Hospital.findById(decoded.id).select('-password');
+      }
+
+      if (!account) {
+        return res.status(401).json({ message: 'Not authorized, account not found' });
+      }
+
+      req.user = account;
+      next();
     } catch (error) {
-        console.error('Auth middleware error:', error.message);
-        return res.status(401).json({
-            success: false,
-            error: 'Token is not valid'
-        });
+      console.error(error);
+      res.status(401).json({ message: 'Not authorized, token failed' });
     }
+  }
+
+  if (!token) {
+    res.status(401).json({ message: 'Not authorized, no token' });
+  }
 };
 
-// Export both as default and named export for flexibility
-module.exports = auth;
-module.exports.auth = auth;
+export default protect;

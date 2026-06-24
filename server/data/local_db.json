@@ -1,0 +1,648 @@
+{
+  "users": [
+    {
+      "fullName": "LifeLink User",
+      "email": "demo@lifelink.local",
+      "password": "$2a$10$Nke1WkBgpGbipNi7S4nDFO4wBwH2a4Oip0SCv.oxSaK4JqIahD2Km",
+      "phone": "+91 99999 88888",
+      "bloodGroup": "O+",
+      "role": "user",
+      "isDonor": true,
+      "_id": "mock-1782306534570-ic6p2ytax",
+      "createdAt": "2026-06-24T13:08:54.720Z",
+      "updatedAt": "2026-06-24T17:27:16.180Z",
+      "id": "mock-1782306534570-ic6p2ytax"
+    },
+    {
+      "fullName": "Test User",
+      "email": "testuser@lifelink.local",
+      "password": "$2a$10$Jca0MWTFInAviGu4feNhC./oahvO2u6QSRHGhyuWHG8DwfXtPabTq",
+      "phone": "+91 99999 88888",
+      "bloodGroup": "O+",
+      "_id": "mock-1782307177686-kub2pnmp8",
+      "createdAt": "2026-06-24T13:19:37.992Z",
+      "updatedAt": "2026-06-24T13:19:37.689Z",
+      "id": "mock-1782307177686-kub2pnmp8"
+    },
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$SXXWTG6H5TmaZYJeER8LsuEtKVPZqitZfEj4WiRoO1u4D.kbR6ZiW",
+      "phone": "1234567890",
+      "_id": "mock-1782319518163-xn1m4fh5y",
+      "createdAt": "2026-06-24T16:45:18.407Z",
+      "updatedAt": "2026-06-24T16:45:18.166Z",
+      "id": "mock-1782319518163-xn1m4fh5y"
+    },
+    {
+      "fullName": "Aman",
+      "email": "aman@mail.com",
+      "password": "$2a$10$iOhxHThp6ZFKwFDnweURW.5KfT3WMcWZUqSX5UsI2ff1Z2XTq85pG",
+      "phone": "8546759515",
+      "bloodGroup": "AB+",
+      "_id": "mock-1782322896634-i1e1sdid8",
+      "createdAt": "2026-06-24T17:41:36.785Z",
+      "updatedAt": "2026-06-24T17:41:36.635Z",
+      "id": "mock-1782322896634-i1e1sdid8"
+    }
+  ],
+  "hospitals": [
+    {
+      "name": "City General Hospital",
+      "email": "admin@citygeneral.local",
+      "password": "$2a$10$I/qvQa4MdZ8CicbdGbRMSOg1oY7rpP/AdaXqPH/IvXAEHnphr6SwO",
+      "contact": {
+        "phone": "+91 98765 43210"
+      },
+      "address": "123 Medical Street, New Delhi",
+      "facilities": {
+        "availableBeds": 21,
+        "availableIcuBeds": 5,
+        "availableOxygenCylinders": 31
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.209,
+          28.6139
+        ]
+      },
+      "distance": "2.3 km",
+      "rating": 4.5,
+      "_id": "mock-1782306534722-0wkzy6jc6",
+      "createdAt": "2026-06-24T13:08:54.821Z",
+      "updatedAt": "2026-06-24T16:58:14.263Z",
+      "id": "mock-1782306534722-0wkzy6jc6"
+    },
+    {
+      "name": "Medicare Center",
+      "email": "admin@medicare.local",
+      "password": "$2a$10$9prkJ0yCmoEDhc0KP5Vx1uKAEztzkJSoepM99geNTlj4HhKB8R02.",
+      "contact": {
+        "phone": "+91 98765 43211"
+      },
+      "address": "456 Health Avenue, Mumbai",
+      "facilities": {
+        "availableBeds": 8,
+        "availableIcuBeds": 2,
+        "availableOxygenCylinders": 15
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.24,
+          28.62
+        ]
+      },
+      "distance": "3.1 km",
+      "rating": 4.2,
+      "_id": "mock-1782306534822-xtpeg1vxq",
+      "createdAt": "2026-06-24T13:08:54.942Z",
+      "updatedAt": "2026-06-24T13:08:54.824Z",
+      "id": "mock-1782306534822-xtpeg1vxq"
+    },
+    {
+      "name": "Sunrise Medical",
+      "email": "admin@sunrise.local",
+      "password": "$2a$10$IJmxnf5g4dGibiEFpBvQsOKJfhCwsjbhIqwXEkm4kljlFGnWt8Pri",
+      "contact": {
+        "phone": "+91 98765 43212"
+      },
+      "address": "789 Health Road, Bangalore",
+      "facilities": {
+        "availableBeds": 12,
+        "availableIcuBeds": 3,
+        "availableOxygenCylinders": 20
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.18,
+          28.59
+        ]
+      },
+      "distance": "4.5 km",
+      "rating": 4.7,
+      "_id": "mock-1782306534945-cjp8egaxz",
+      "createdAt": "2026-06-24T13:08:55.069Z",
+      "updatedAt": "2026-06-24T13:08:54.947Z",
+      "id": "mock-1782306534945-cjp8egaxz"
+    },
+    {
+      "name": "Apollo Hospital",
+      "email": "admin@apollo.local",
+      "password": "$2a$10$lOAP7G37UEP.e08.Wmyr/ujil38j9Z0wTm/y2P4rW24v2kLsNr6we",
+      "contact": {
+        "phone": "+91 98765 43213"
+      },
+      "address": "101 Health Complex, Chennai",
+      "facilities": {
+        "availableBeds": 25,
+        "availableIcuBeds": 8,
+        "availableOxygenCylinders": 35
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.26,
+          28.65
+        ]
+      },
+      "distance": "5.2 km",
+      "rating": 4.8,
+      "_id": "mock-1782306535070-d2r1whjv3",
+      "createdAt": "2026-06-24T13:08:55.218Z",
+      "updatedAt": "2026-06-24T13:08:55.073Z",
+      "id": "mock-1782306535070-d2r1whjv3"
+    },
+    {
+      "name": "Fortis Hospital",
+      "email": "admin@fortis.local",
+      "password": "$2a$10$uItXIWZlWwH2B7ebLGCJSeUwHhM0H5hnsRMju06Uzv/FRnYc1Sc8G",
+      "contact": {
+        "phone": "+91 98765 43214"
+      },
+      "address": "202 Medical Park, Kolkata",
+      "facilities": {
+        "availableBeds": 18,
+        "availableIcuBeds": 4,
+        "availableOxygenCylinders": 22
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.16,
+          28.64
+        ]
+      },
+      "distance": "1.8 km",
+      "rating": 4.6,
+      "_id": "mock-1782306535219-08vwe4axr",
+      "createdAt": "2026-06-24T13:08:55.326Z",
+      "updatedAt": "2026-06-24T13:08:55.221Z",
+      "id": "mock-1782306535219-08vwe4axr"
+    },
+    {
+      "name": "AIIMS Hospital",
+      "email": "admin@aiims.local",
+      "password": "$2a$10$VWiJgWFaOD0wLoLUJ8gdrO0LUQa.sALpwPJng9eoRVOisHOqk/6t6",
+      "contact": {
+        "phone": "+91 98765 43215"
+      },
+      "address": "303 Government Road, Delhi",
+      "facilities": {
+        "availableBeds": 45,
+        "availableIcuBeds": 12,
+        "availableOxygenCylinders": 50
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.21,
+          28.57
+        ]
+      },
+      "distance": "6.3 km",
+      "rating": 4.9,
+      "_id": "mock-1782306535327-o2imel3td",
+      "createdAt": "2026-06-24T13:08:55.462Z",
+      "updatedAt": "2026-06-24T13:08:55.330Z",
+      "id": "mock-1782306535327-o2imel3td"
+    },
+    {
+      "name": "City General Hospital",
+      "email": "hospital340650@lifelink.com",
+      "password": "$2a$10$qYDF6E2z1UPccz6fK2gv6uVd5C8VDt23p5O4J6UBXo06kWi/cKQbu",
+      "contact": {
+        "phone": "+91 9876543210"
+      },
+      "address": "123 Medical Street, New Delhi",
+      "facilities": {
+        "availableBeds": 60,
+        "availableIcuBeds": 12,
+        "availableOxygenCylinders": 30
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.18216016579197,
+          28.658928742352085
+        ]
+      },
+      "_id": "mock-1782307344559-86sg16tz3",
+      "createdAt": "2026-06-24T13:22:24.860Z",
+      "updatedAt": "2026-06-24T13:22:24.560Z",
+      "id": "mock-1782307344559-86sg16tz3"
+    },
+    {
+      "name": "City General Hospital",
+      "email": "hospital324076@lifelink.com",
+      "password": "$2a$10$Z08TcdxjzKyPJ/WY6mo.xOzpqJggOYDZnuyU2Fu0rr6VkwO9yW1Oy",
+      "contact": {
+        "phone": "+91 9876543210"
+      },
+      "address": "123 Medical Street, New Delhi",
+      "facilities": {
+        "availableBeds": 5,
+        "availableIcuBeds": 1,
+        "availableOxygenCylinders": 5
+      },
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.25657613520848,
+          28.67780346726747
+        ]
+      },
+      "_id": "mock-1782321329078-2p7mjap6b",
+      "createdAt": "2026-06-24T17:15:29.175Z",
+      "updatedAt": "2026-06-24T17:15:35.888Z",
+      "id": "mock-1782321329078-2p7mjap6b"
+    }
+  ],
+  "ambulances": [
+    {
+      "number": "DL-3C-AM-1002",
+      "type": "Mobile ICU",
+      "status": "available",
+      "driver": "Rajesh Kumar",
+      "phone": "+91 98765 00001",
+      "locationName": "Connaught Place, New Delhi",
+      "location": [
+        28.6304,
+        77.2177
+      ],
+      "equipment": [
+        "Ventilator",
+        "Defibrillator",
+        "Oxygen Cylinder",
+        "Advanced Monitor",
+        "AED"
+      ],
+      "hospitalId": "mock-1782306534722-0wkzy6jc6",
+      "_id": "mock-1782306535464-lcao36kh7",
+      "createdAt": "2026-06-24T13:08:55.465Z",
+      "updatedAt": "2026-06-24T13:08:55.465Z",
+      "id": "mock-1782306535464-lcao36kh7"
+    },
+    {
+      "number": "DL-2C-AM-4098",
+      "type": "Advanced Life Support",
+      "status": "busy",
+      "driver": "Vikram Singh",
+      "phone": "+91 98765 00002",
+      "locationName": "Saket, New Delhi",
+      "location": [
+        28.5244,
+        77.2167
+      ],
+      "equipment": [
+        "Oxygen Port",
+        "Defibrillator",
+        "Patient Monitor",
+        "First Aid Kit"
+      ],
+      "hospitalId": "mock-1782306535219-08vwe4axr",
+      "_id": "mock-1782306535466-1usm2oywx",
+      "createdAt": "2026-06-24T13:08:55.467Z",
+      "updatedAt": "2026-06-24T17:27:51.910Z",
+      "id": "mock-1782306535466-1usm2oywx"
+    },
+    {
+      "number": "DL-4C-AM-9988",
+      "type": "Basic Life Support",
+      "status": "available",
+      "driver": "Amit Patel",
+      "phone": "+91 98765 00003",
+      "locationName": "Dwarka, New Delhi",
+      "location": [
+        28.5889,
+        77.0578
+      ],
+      "equipment": [
+        "Oxygen Port",
+        "First Aid Kit",
+        "Manual Stretcher"
+      ],
+      "hospitalId": "mock-1782306535070-d2r1whjv3",
+      "_id": "mock-1782306535468-5eouj4ukn",
+      "createdAt": "2026-06-24T13:08:55.469Z",
+      "updatedAt": "2026-06-24T13:08:55.469Z",
+      "id": "mock-1782306535468-5eouj4ukn"
+    },
+    {
+      "number": "DL-1C-AM-0099",
+      "type": "Mobile ICU",
+      "status": "available",
+      "driver": "Sanjay Dutt",
+      "phone": "+91 98765 00004",
+      "locationName": "Rajouri Garden, New Delhi",
+      "location": [
+        28.6415,
+        77.1209
+      ],
+      "equipment": [
+        "Ventilator",
+        "Defibrillator",
+        "Oxygen Cylinder",
+        "Advanced Monitor"
+      ],
+      "hospitalId": "mock-1782306535327-o2imel3td",
+      "_id": "mock-1782306535469-pj3ut4h3i",
+      "createdAt": "2026-06-24T13:08:55.471Z",
+      "updatedAt": "2026-06-24T13:08:55.471Z",
+      "id": "mock-1782306535469-pj3ut4h3i"
+    },
+    {
+      "number": "DL-5C-AM-3432",
+      "type": "Basic Life Support",
+      "status": "available",
+      "driver": "Ramesh Sen",
+      "phone": "+91 98765 00005",
+      "locationName": "Okhla, New Delhi",
+      "location": [
+        28.5355,
+        77.2878
+      ],
+      "equipment": [
+        "Oxygen Port",
+        "First Aid Kit"
+      ],
+      "hospitalId": "mock-1782306534822-xtpeg1vxq",
+      "_id": "mock-1782306535471-8su29fywr",
+      "createdAt": "2026-06-24T13:08:55.472Z",
+      "updatedAt": "2026-06-24T13:08:55.472Z",
+      "id": "mock-1782306535471-8su29fywr"
+    },
+    {
+      "number": "DL-9C-AM-1122",
+      "type": "Advanced Life Support",
+      "status": "available",
+      "driver": "Sohan Lal",
+      "phone": "+91 98765 00006",
+      "locationName": "Indirapuram, NCR",
+      "location": [
+        28.6358,
+        77.3732
+      ],
+      "equipment": [
+        "Oxygen Port",
+        "Defibrillator",
+        "First Aid Kit"
+      ],
+      "hospitalId": "mock-1782306534945-cjp8egaxz",
+      "_id": "mock-1782306535473-qauqhau9g",
+      "createdAt": "2026-06-24T13:08:55.474Z",
+      "updatedAt": "2026-06-24T13:08:55.474Z",
+      "id": "mock-1782306535473-qauqhau9g"
+    },
+    {
+      "number": "DL-1C-ZZ-9999",
+      "type": "Advanced Life Support",
+      "driver": "Arjun Dev",
+      "phone": "+91 99999 11111",
+      "locationName": "Saket, New Delhi",
+      "location": [
+        28.648845733805867,
+        77.27532637792261
+      ],
+      "equipment": [
+        "Ventilator",
+        "Defibrillator"
+      ],
+      "hospitalId": "mock-1782306534722-0wkzy6jc6",
+      "_id": "mock-1782320162965-yomzp45q5",
+      "createdAt": "2026-06-24T16:56:02.966Z",
+      "updatedAt": "2026-06-24T17:01:44.901Z",
+      "id": "mock-1782320162965-yomzp45q5",
+      "status": "busy"
+    },
+    {
+      "number": "DL-1C-ZZ-8888",
+      "type": "Advanced Life Support",
+      "driver": "Test Driver",
+      "phone": "+91 99999 22222",
+      "locationName": "Saket, New Delhi",
+      "location": [
+        28.675847799530978,
+        77.17601035818066
+      ],
+      "equipment": [
+        "Ventilator",
+        "Defibrillator"
+      ],
+      "hospitalId": "mock-1782306534722-0wkzy6jc6",
+      "_id": "mock-1782320393088-k8up7kbxr",
+      "createdAt": "2026-06-24T16:59:53.089Z",
+      "updatedAt": "2026-06-24T16:59:53.089Z",
+      "id": "mock-1782320393088-k8up7kbxr"
+    },
+    {
+      "number": "DL-1C-ZZ-7777",
+      "type": "Advanced Life Support",
+      "driver": "Test Driver Seven",
+      "phone": "+91 99999 77777",
+      "locationName": "Saket",
+      "location": [
+        28.573500414409928,
+        77.18025136642152
+      ],
+      "equipment": [
+        "Ventilator",
+        "Defibrillator"
+      ],
+      "hospitalId": "mock-1782306534722-0wkzy6jc6",
+      "_id": "mock-1782320584876-0fe36ttie",
+      "createdAt": "2026-06-24T17:03:04.877Z",
+      "updatedAt": "2026-06-24T17:03:04.877Z",
+      "id": "mock-1782320584876-0fe36ttie"
+    }
+  ],
+  "bookings": [
+    {
+      "ambulanceId": "mock-1782320162965-yomzp45q5",
+      "ambulanceNumber": "DL-1C-ZZ-9999",
+      "type": "Advanced Life Support",
+      "patientName": "Test Patient",
+      "phone": "+91 99999 88888",
+      "location": "Saket, New Delhi",
+      "emergencyType": "General Medical Case",
+      "handoverNotes": "Test booking",
+      "status": "Dispatched",
+      "userId": "mock-1782306534722-0wkzy6jc6",
+      "hospitalId": "mock-1782306534722-0wkzy6jc6",
+      "_id": "mock-1782320504890-8zn0l8ar9",
+      "createdAt": "2026-06-24T17:01:44.895Z",
+      "updatedAt": "2026-06-24T17:01:44.895Z",
+      "id": "mock-1782320504890-8zn0l8ar9"
+    },
+    {
+      "ambulanceId": "mock-1782306535466-1usm2oywx",
+      "ambulanceNumber": "DL-2C-AM-4098",
+      "type": "Advanced Life Support",
+      "patientName": "xyz",
+      "phone": "+91 99999 88888",
+      "location": "nodia, delhi",
+      "emergencyType": "Cardiac arrest",
+      "handoverNotes": "",
+      "status": "Dispatched",
+      "userId": "mock-1782306534570-ic6p2ytax",
+      "hospitalId": "mock-1782306535219-08vwe4axr",
+      "_id": "mock-1782322071908-wqy4mjx2r",
+      "createdAt": "2026-06-24T17:27:51.909Z",
+      "updatedAt": "2026-06-24T17:27:51.908Z",
+      "id": "mock-1782322071908-wqy4mjx2r"
+    }
+  ],
+  "donors": [
+    {
+      "name": "Rahul Sharma",
+      "bloodGroup": "O+",
+      "phone": "+91 98765 11111",
+      "address": "Sec-12, Noida, UP",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.32,
+          28.57
+        ]
+      },
+      "distance": "1.2 km",
+      "lastDonated": "2 months ago",
+      "_id": "mock-1782306535478-2vnitry1m",
+      "createdAt": "2026-06-24T13:08:55.480Z",
+      "updatedAt": "2026-06-24T13:08:55.480Z",
+      "id": "mock-1782306535478-2vnitry1m"
+    },
+    {
+      "name": "Priya Patel",
+      "bloodGroup": "A-",
+      "phone": "+91 98765 22222",
+      "address": "Andheri West, Mumbai",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.23,
+          28.64
+        ]
+      },
+      "distance": "2.5 km",
+      "lastDonated": "4 months ago",
+      "_id": "mock-1782306535481-81690e0pw",
+      "createdAt": "2026-06-24T13:08:55.482Z",
+      "updatedAt": "2026-06-24T13:08:55.482Z",
+      "id": "mock-1782306535481-81690e0pw"
+    },
+    {
+      "name": "Amit Patel",
+      "bloodGroup": "B+",
+      "phone": "+91 98765 33333",
+      "address": "Indiranagar, Bangalore",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.15,
+          28.6
+        ]
+      },
+      "distance": "3.4 km",
+      "lastDonated": "1 month ago",
+      "_id": "mock-1782306535483-t1v8jw6ej",
+      "createdAt": "2026-06-24T13:08:55.485Z",
+      "updatedAt": "2026-06-24T13:08:55.485Z",
+      "id": "mock-1782306535483-t1v8jw6ej"
+    },
+    {
+      "name": "Anjali Gupta",
+      "bloodGroup": "O-",
+      "phone": "+91 98765 44444",
+      "address": "Salt Lake, Kolkata",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.28,
+          28.63
+        ]
+      },
+      "distance": "4.1 km",
+      "lastDonated": "5 months ago",
+      "_id": "mock-1782306535486-z4fo9svpg",
+      "createdAt": "2026-06-24T13:08:55.488Z",
+      "updatedAt": "2026-06-24T13:08:55.488Z",
+      "id": "mock-1782306535486-z4fo9svpg"
+    },
+    {
+      "name": "Vikram Singh",
+      "bloodGroup": "AB+",
+      "phone": "+91 98765 55555",
+      "address": "Karol Bagh, New Delhi",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.19,
+          28.56
+        ]
+      },
+      "distance": "5.8 km",
+      "lastDonated": "Never",
+      "_id": "mock-1782306535489-9bbefm0pg",
+      "createdAt": "2026-06-24T13:08:55.492Z",
+      "updatedAt": "2026-06-24T13:08:55.492Z",
+      "id": "mock-1782306535489-9bbefm0pg"
+    },
+    {
+      "name": "Neha Roy",
+      "bloodGroup": "B-",
+      "phone": "+91 98765 66666",
+      "address": "Connaught Place, New Delhi",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.22,
+          28.61
+        ]
+      },
+      "distance": "0.8 km",
+      "lastDonated": "3 months ago",
+      "_id": "mock-1782306535493-xiqmsje97",
+      "createdAt": "2026-06-24T13:08:55.496Z",
+      "updatedAt": "2026-06-24T13:08:55.496Z",
+      "id": "mock-1782306535493-xiqmsje97"
+    },
+    {
+      "name": "LifeLink User",
+      "bloodGroup": "O+",
+      "phone": "+91 99999 88888",
+      "address": "Connaught Place, New Delhi",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          77.27955061821784,
+          28.581026601611413
+        ]
+      },
+      "lastDonated": "Never",
+      "userId": "mock-1782306534570-ic6p2ytax",
+      "_id": "mock-1782322036176-fwkv3t8vd",
+      "createdAt": "2026-06-24T17:27:16.178Z",
+      "updatedAt": "2026-06-24T17:27:16.178Z",
+      "id": "mock-1782322036176-fwkv3t8vd"
+    }
+  ],
+  "bloodstocks": [
+    {
+      "O+": 45,
+      "O-": 8,
+      "A+": 38,
+      "A-": 7,
+      "B+": 32,
+      "B-": 4,
+      "AB+": 18,
+      "AB-": 2,
+      "_id": "mock-1782306534563-4g2qc5fkc",
+      "createdAt": "2026-06-24T13:08:54.569Z",
+      "updatedAt": "2026-06-24T17:15:39.891Z",
+      "id": "mock-1782306534563-4g2qc5fkc"
+    }
+  ],
+  "emergencies": []
+}
